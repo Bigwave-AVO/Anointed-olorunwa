@@ -276,7 +276,7 @@
 
     <!-- Header & Navigation Bar -->
     <header class="glass sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+        <nav class="container mx-auto px-4 sm:px-6 py-6 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300">Anointed Olorunwa</a>
             <div class="flex items-center space-x-6">
                 <div class="hidden md:flex items-center space-x-8">
@@ -313,7 +313,7 @@
             </div>
         </nav>
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden glass-card mx-6 mb-6 rounded-2xl" id="mobile-menu">
+        <div class="md:hidden hidden glass-card mx-4 sm:mx-6 mb-6 rounded-2xl" id="mobile-menu">
             <a href="#about" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">About</a>
             <a href="#skills" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">Skills</a>
             <a href="#projects" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">Projects</a>
@@ -322,25 +322,25 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-4 sm:px-6 py-10 sm:py-12">
 
         <!-- Hero Section -->
-        <section class="text-center py-32 relative overflow-hidden">
+        <section class="text-center py-20 sm:py-28 md:py-32 relative overflow-hidden">
             <div class="floating">
-                <h1 class="text-5xl md:text-7xl font-extrabold gradient-text leading-tight mb-8">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold gradient-text leading-tight mb-6 sm:mb-8">
                     Full Stack Developer
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed">
+                <p class="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
                     I craft modern, smooth, and user-friendly digital experiences that solve real-world problems with elegant code and intuitive design.
                 </p>
-                <div class="flex justify-center gap-6 flex-wrap">
-                    <a href="#projects" class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                <div class="flex justify-center gap-4 sm:gap-6 flex-wrap">
+                    <a href="#projects" class="glass-card w-full sm:w-auto text-center text-black dark:text-white px-6 sm:px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
                         View My Work
                     </a>
-                    <a href="#contact" class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                    <a href="#contact" class="glass-card w-full sm:w-auto text-center text-black dark:text-white px-6 sm:px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
                         Get In Touch
                     </a>
-                    <a href="resume.pdf" download class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                    <a href="resume.pdf" download class="glass-card w-full sm:w-auto text-center text-black dark:text-white px-6 sm:px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
                         Download Resume
                     </a>
                 </div>
@@ -348,7 +348,7 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="py-24 fade-in-section">
+        <section id="about" class="py-16 sm:py-24 fade-in-section">
             <div class="glass-card rounded-3xl p-12 text-center">
                 <h2 class="text-4xl font-bold gradient-text mb-8 flex items-center justify-center gap-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -373,7 +373,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-24 fade-in-section">
+        <section id="skills" class="py-16 sm:py-24 fade-in-section">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold gradient-text mb-6 flex items-center justify-center gap-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -382,8 +382,8 @@
                     Skills, Tools & Tech Stats
                 </h2>
             </div>
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div class="glass-card rounded-3xl p-8">
+            <div class="grid md:grid-cols-2 gap-6 sm:gap-10 lg:gap-12">
+                <div class="glass-card rounded-3xl p-6 sm:p-8">
                     <h3 class="text-2xl font-semibold text-center gradient-text mb-8">Programming Languages</h3>
                     <div class="space-y-6">
                         <div class="skill-item">
@@ -448,7 +448,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="glass-card rounded-3xl p-8">
+                <div class="glass-card rounded-3xl p-6 sm:p-8">
                     <h3 class="text-2xl font-semibold text-center gradient-text mb-8">Tools & Frameworks</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                         <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Node.js</span>
@@ -469,7 +469,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-24 fade-in-section">
+        <section id="projects" class="py-16 sm:py-24 fade-in-section">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold gradient-text mb-6 flex items-center justify-center gap-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -480,13 +480,13 @@
                 <p class="text-gray-600 dark:text-gray-400 text-lg">Here are some Procjects I've been working on</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Project Card 1 -->
                 <div class="glass-card rounded-3xl overflow-hidden card-3d group">
                     <img 
                         src="what's-up.png" 
                         alt="Preview of Wetin Dey Sup project" 
-                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        class="w-full h-44 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
@@ -510,7 +510,7 @@
                     <img 
                         src="trendythreads.jpeg" 
                         alt="Preview of TrendyThreads project" 
-                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        class="w-full h-44 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
@@ -533,7 +533,7 @@
                     <img 
                         src="luxe-beauty.png" 
                         alt="Preview of Luxe Beauty project" 
-                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        class="w-full h-44 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
@@ -557,7 +557,7 @@
                     <img 
                         src="Tallwriter.png" 
                         alt="Preview of The Tall Writer Blog" 
-                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        class="w-full h-44 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
@@ -581,8 +581,8 @@
 
         <!-- Interests and Soft Skills Section -->
         <section id="interests" class="py-24 fade-in-section">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div class="glass-card rounded-3xl p-10">
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-12">
+                <div class="glass-card rounded-3xl p-6 sm:p-10">
                     <h3 class="text-2xl font-bold text-center gradient-text mb-8 flex items-center justify-center gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2l1.546 4.758H18.6l-3.9 2.834 1.49 4.592L12 12.918 7.81 14.184 9.3 9.592 5.4 6.758h5.054L12 2z"/>
@@ -616,7 +616,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="glass-card rounded-3xl p-10">
+                <div class="glass-card rounded-3xl p-6 sm:p-10">
                     <h3 class="text-2xl font-bold text-center gradient-text mb-8 flex items-center justify-center gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z"/>
@@ -652,21 +652,21 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="py-24">
-        <div class="container mx-auto px-6">
-            <div class="glass-card rounded-3xl p-12 text-center">
+    <footer id="contact" class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 text-center">
                 <h2 class="text-3xl font-bold gradient-text mb-4">Interested in working together?</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
                     I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
                 
                 <!-- Contact Form -->
-                <form class="max-w-2xl mx-auto grid grid-cols-1 gap-6 mb-12" 
+                <form class="max-w-2xl mx-auto grid grid-cols-1 gap-4 sm:gap-6 mb-12" 
                 action="https://formspree.io/f/xblpgppj" method="POST">
-                    <input type="text" name="name" placeholder="Your name" required class="w-full px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300">
-                    <input type="email" name="email" placeholder="Your email" required class="w-full px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300">
-                    <textarea name="message" placeholder="Tell me about your project..." rows="5" required class="w-full px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300 resize-none"></textarea>
-                    <button type="submit" class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                    <input type="text" name="name" placeholder="Your name" required class="w-full px-5 sm:px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300">
+                    <input type="email" name="email" placeholder="Your email" required class="w-full px-5 sm:px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300">
+                    <textarea name="message" placeholder="Tell me about your project..." rows="5" required class="w-full px-5 sm:px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300 resize-none"></textarea>
+                    <button type="submit" class="glass-card w-full sm:w-auto text-center text-black dark:text-white px-6 sm:px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
                         Send Message
                     </button>
                 </form>

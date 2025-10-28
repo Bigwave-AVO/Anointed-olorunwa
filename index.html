@@ -15,8 +15,11 @@
         theme: {
           extend: {
             colors: {
-              'primary': '#4f46e5', // A nice indigo for highlights
-              'primary-hover': '#4338ca',
+              'primary': '#000000',
+              'primary-hover': '#333333',
+            },
+            backdropBlur: {
+              'xs': '2px',
             }
           }
         }
@@ -33,27 +36,220 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            overflow-x: hidden;
         }
 
-        /* Styles for scroll-triggered animations */
+        .dark body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+
+        /* Glass morphism styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .dark .glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .dark #preloader {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+        #preloader.hide {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+        .loader-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        .loader-logo {
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: #000000;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .dark .loader-logo {
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #000000;
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+        .dark .spinner {
+            border-color: rgba(255, 255, 255, 0.1);
+            border-top-color: #ffffff;
+        }
+        @keyframes spin { 
+            to { transform: rotate(360deg); } 
+        }
+
+        /* 3D Animations */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .dark .glow {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Smooth animations */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Skill bars */
+        .skill-bar-track {
+            height: 8px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .dark .skill-bar-track {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .skill-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #000000, #333333);
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .dark .skill-bar-fill {
+            background: linear-gradient(90deg, #ffffff, #e0e0e0);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* 3D Card Effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        .card-3d:hover {
+            transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #000000, #333333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #000000, #333333);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        .dark .scroll-progress {
+            background: linear-gradient(90deg, #ffffff, #cccccc);
+        }
+
+        /* Particle background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Text contrast for dark mode */
+        .text-contrast {
+            color: #1a1a1a;
+        }
+        .dark .text-contrast {
+            color: #f5f5f5;
+        }
+
+        /* Button contrast */
+        .btn-glass {
+            color: #000000;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .dark .btn-glass {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
     </style>
     
     <!-- Three.js CDN for 3D features -->
     <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
     
-    <!-- Script to apply theme from localStorage and prevent FOUC (Flash of Unstyled Content) -->
+    <!-- Script to apply theme from localStorage and prevent FOUC -->
     <script>
-        // On page load, check for saved theme preference or OS preference
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -61,202 +257,393 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-300 transition-colors duration-300">
+<body class="transition-colors duration-500">
+
+    <!-- Preloader -->
+    <div id="preloader" role="status" aria-label="Loading site">
+        <div class="loader-wrap">
+            <div class="loader-logo text-4xl md:text-5xl">Anointed Olorunwa</div>
+            <div class="spinner"></div>
+            <div class="text-sm opacity-60">Loading Experience...</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Particle Background -->
+    <canvas class="particles" id="particle-canvas"></canvas>
 
     <!-- Header & Navigation Bar -->
-    <header class="bg-white/80 dark:bg-gray-900/80 shadow-sm sticky top-0 z-50 backdrop-blur-sm">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-900 dark:text-white">Anointed Olorunwa</a>
-            <div class="flex items-center space-x-4">
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition duration-300">About</a>
-                    <a href="#skills" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition duration-300">Skills</a>
-                    <a href="#projects" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition duration-300">Projects</a>
-                    <a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition duration-300">Contact</a>
+    <header class="glass sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300">Anointed Olorunwa</a>
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 relative group">
+                        Skills
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 relative group">
+                        Projects
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </div>
 
                 <!-- Dark Mode Toggle Button -->
-                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <button id="theme-toggle" type="button" class="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300">
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM13 17a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4.93 14.95a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414z"></path></svg>
                 </button>
 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
-                    <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button class="md:hidden glass-card p-3 rounded-full" id="mobile-menu-button">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
             </div>
         </nav>
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white dark:bg-gray-800" id="mobile-menu">
-            <a href="#about" class="block py-2 px-6 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
-            <a href="#skills" class="block py-2 px-6 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Skills</a>
-            <a href="#projects" class="block py-2 px-6 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a>
-            <a href="#contact" class="block py-2 px-6 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+        <div class="md:hidden hidden glass-card mx-6 mb-6 rounded-2xl" id="mobile-menu">
+            <a href="#about" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">About</a>
+            <a href="#skills" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">Skills</a>
+            <a href="#projects" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">Projects</a>
+            <a href="#contact" class="block py-4 px-6 text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-black/20 transition-colors duration-300">Contact</a>
         </div>
     </header>
-    <!-- Scroll Progress Bar -->
-    <div class="fixed top-0 left-0 w-full h-1 z-50">
-        <div id="scroll-progress" class="h-full bg-primary transform-origin-left scale-x-0 transition-transform duration-200"></div>
-    </div>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
 
         <!-- Hero Section -->
-        <section class="text-center py-20 relative overflow-hidden rounded-xl">
-            <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;"></canvas>
-            <div class="relative" style="z-index:1;">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight">Full Stack Developer </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">I build modern, smooth, and user-friendly websites, applications, tools/softwareexperiences that solve real-world problems.</p>
-                <div class="mt-8 flex justify-center gap-4 flex-wrap">
-                    <a href="#projects" class="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-hover transition duration-300">View My Work</a>
-                    <a href="#contact" class="bg-white text-gray-800 px-6 py-3 rounded-lg font-semibold border border-gray-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 transition duration-300">Get In Touch</a>
+        <section class="text-center py-32 relative overflow-hidden">
+            <div class="floating">
+                <h1 class="text-5xl md:text-7xl font-extrabold gradient-text leading-tight mb-8">
+                    Full Stack Developer
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed">
+                    I craft modern, smooth, and user-friendly digital experiences that solve real-world problems with elegant code and intuitive design.
+                </p>
+                <div class="flex justify-center gap-6 flex-wrap">
+                    <a href="#projects" class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                        Get In Touch
+                    </a>
+                    <a href="resume.pdf" download class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                        Download Resume
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="py-20 bg-white dark:bg-gray-800 rounded-xl shadow-md -mx-6 px-6 lg:px-12 fade-in-section">
-            <div class="text-center">
-                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">🧠 About Me</h2>
-                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-4xl mx-auto">
-                    I'm Anointed Olorunwa, a passionate and ambitious Full Stack Web Developer and Software Engineer. I specialize in building modern, smooth, and user-friendly websites, web apps, and tools.
-                    I'm also a crypto enthusiast actively learning blockchain development. I enjoy creating clean and functional UI/UX experiences, and I have a strong interest in game development as well. I'm always improving, learning, and pushing myself to build things that are both helpful and enjoyable to use.
+        <section id="about" class="py-24 fade-in-section">
+            <div class="glass-card rounded-3xl p-12 text-center">
+                <h2 class="text-4xl font-bold gradient-text mb-8 flex items-center justify-center gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a7 7 0 00-7 7v2.25A3.75 3.75 0 008.75 15h.5v2.25A2.75 2.75 0 0012 20h0a2.75 2.75 0 002.75-2.75V15h.5A3.75 3.75 0 0019 11.25V9a7 7 0 00-7-7z"/>
+                    </svg>
+                    About Me
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed">
+                    I'm Anointed Olorunwa, a passionate Full Stack Developer and Software Engineer. I specialize in building modern, smooth, and user-friendly websites, web apps, and tools that make a real difference.
+                    I'm also a crypto enthusiast actively learning blockchain development, and I have a strong interest in game development. I'm always improving, learning, and pushing myself to build things that are both helpful and enjoyable to use.
                 </p>
-                <div class="mt-8">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Languages Spoken</h3>
-                    <div class="mt-4 flex flex-wrap justify-center gap-2">
-                        <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full">English</span>
-                        <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full">Yoruba</span>
-                        <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full">French</span>
-                        <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full">Conversational German</span>
+                <div class="mt-12">
+                    <h3 class="text-xl font-semibold gradient-text mb-6">Languages Spoken</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="glass-card text-sm font-medium px-4 py-2 rounded-full text-gray-800 dark:text-gray-100">English</span>
+                        <span class="glass-card text-sm font-medium px-4 py-2 rounded-full text-gray-800 dark:text-gray-100">Yoruba</span>
+                        <span class="glass-card text-sm font-medium px-4 py-2 rounded-full text-gray-800 dark:text-gray-100">French</span>
+                        <span class="glass-card text-sm font-medium px-4 py-2 rounded-full text-gray-800 dark:text-gray-100">Conversational German</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-20 fade-in-section">
-            <div class="text-center">
-                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-12">🛠️ Skills & Technologies</h2>
+        <section id="skills" class="py-24 fade-in-section">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-6 flex items-center justify-center gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 3h6v6H4V3zm0 12h6v6H4v-6zM14 3h6v6h-6V3zm0 12h6v6h-6v-6z"/>
+                    </svg>
+                    Skills, Tools & Tech Stats
+                </h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-6">Programming Languages</h3>
-                    <ul class="space-y-3">
-                        <li class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm flex items-center gap-4"><span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 font-bold text-xs p-2 rounded-md">HTML</span><p class="text-gray-700 dark:text-gray-300">Core of web content structure.</p></li>
-                        <li class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm flex items-center gap-4"><span class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-bold text-xs p-2 rounded-md">CSS</span><p class="text-gray-700 dark:text-gray-300">Styling and designing beautiful layouts.</p></li>
-                        <li class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm flex items-center gap-4"><span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 font-bold text-xs p-2 rounded-md">JavaScript</span><p class="text-gray-700 dark:text-gray-300">Interactive and dynamic user experiences.</p></li>
-                        <li class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm flex items-center gap-4"><span class="bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300 font-bold text-xs p-2 rounded-md">Python</span><p class="text-gray-700 dark:text-gray-300">Versatile for backend and scripting.</p></li>
-                        <li class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm flex items-center gap-4"><span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-bold text-xs p-2 rounded-md">SQL</span><p class="text-gray-700 dark:text-gray-300">Managing relational databases.</p></li>
-                        <li class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm flex items-center gap-4"><span class="bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-bold text-xs p-2 rounded-md">MongoDB</span><p class="text-gray-700 dark:text-gray-300">Flexible NoSQL data storage.</p></li>
-                    </ul>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="text-2xl font-semibold text-center gradient-text mb-8">Programming Languages</h3>
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="bg-green-500 text-white font-bold text-xs p-2 rounded-lg">HTML</span>
+                                    <span class="text-gray-700 dark:text-gray-300 text-sm">Core of web content structure</span>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">100%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-percent="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="bg-blue-500 text-white font-bold text-xs p-2 rounded-lg">CSS</span>
+                                    <span class="text-gray-700 dark:text-gray-300 text-sm">Styling and beautiful layouts</span>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="bg-yellow-500 text-white font-bold text-xs p-2 rounded-lg">JavaScript</span>
+                                    <span class="text-gray-700 dark:text-gray-300 text-sm">Interactive experiences</span>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">80%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="bg-cyan-500 text-white font-bold text-xs p-2 rounded-lg">React</span>
+                                    <span class="text-gray-700 dark:text-gray-300 text-sm">Component-driven UIs</span>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">80%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="bg-sky-500 text-white font-bold text-xs p-2 rounded-lg">Python</span>
+                                    <span class="text-gray-700 dark:text-gray-300 text-sm">Backend and scripting</span>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">70%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-percent="70"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-6">Tools, Frameworks & Tech</h3>
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Node.js</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Django</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">FastAPI</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">React</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">PostgreSQL</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Git & GitHub</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">VS Code</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Vercel</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">APIs</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">AIs</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Figma</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Tailwind CSS</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Bootstrap</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Three.js</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Firebase</span>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-lg">Supabase</span>
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="text-2xl font-semibold text-center gradient-text mb-8">Tools & Frameworks</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Node.js</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Django</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">FastAPI</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">PostgreSQL</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Git & GitHub</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">VS Code</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Vercel</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">APIs</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Figma</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Tailwind CSS</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Three.js</span>
+                        <span class="glass-card text-center py-3 px-4 rounded-xl text-sm font-medium hover:scale-105 transition-transform duration-300 text-gray-800 dark:text-gray-100">Firebase</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-20 bg-white dark:bg-gray-800 rounded-xl shadow-md -mx-6 px-6 lg:px-12 fade-in-section">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center">💼 My Projects</h2>
-            <p class="text-center text-gray-600 dark:text-gray-400 mt-2 mb-12">Here are a couple of things I've been working on.</p>
+        <section id="projects" class="py-24 fade-in-section">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-6 flex items-center justify-center gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 7a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>
+                    </svg>
+                    My Projects
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 text-lg">Here are some Procjects I've been working on</p>
+            </div>
             
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1 -->
-                <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group project-card">
-                    <!-- Replace this src with a screenshot of your project -->
+                <div class="glass-card rounded-3xl overflow-hidden card-3d group">
                     <img 
                         src="what's-up.png" 
                         alt="Preview of Wetin Dey Sup project" 
-                        class="w-full h-48 object-cover"
+                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">What's up?</h3>
-                        <p class="mt-2 text-gray-600 dark:text-gray-400 flex-grow">An offline first journal web app that lets users pick their mood, write or record voice notes, and export entries. Features light/dark theme, offline-first support, animated UI, and a fun, relatable tone.</p>
-                        <a href="https://wetin-dey-sup-iota.vercel.app/" class="mt-4 font-semibold text-primary dark:text-indigo-400 group-hover:underline self-start">View Project &rarr;</a>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold gradient-text mb-4">What's up?</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">An offline-first journal web app with mood tracking, voice notes, and export features.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">HTML & CSS</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">JavaScript</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">PWA</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">Voice API</span>
+                        </div>
+                        <a href="https://wetin-dey-sup-iota.vercel.app/" class="inline-flex items-center text-black dark:text-white font-semibold hover:underline group-hover:translate-x-2 transition-transform duration-300">
+                            View Project <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Project Card 2 -->
-                <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group project-card">
-                     <!-- Replace this src with a screenshot of your project -->
+                <div class="glass-card rounded-3xl overflow-hidden card-3d group">
                     <img 
                         src="trendythreads.jpeg" 
                         alt="Preview of TrendyThreads project" 
-                        class="w-full h-48 object-cover"
+                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">TrendyThreads</h3>
-                        <p class="mt-2 text-gray-600 dark:text-gray-400 flex-grow">A fashion e-commerce site integrated with paystack payment portal for users to make payments. with Cool animations, clean layout, product filtering, mobile-friendly UI.</p>
-                        <a href="https://trendy-threads-puce.vercel.app/" class="mt-4 font-semibold text-primary dark:text-indigo-400 group-hover:underline self-start">View Project &rarr;</a>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold gradient-text mb-4">TrendyThreads</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">Fashion e-commerce site with Paystack integration and modern UI animations.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">E-commerce</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">Paystack</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">Responsive</span>
+                        </div>
+                        <a href="https://trendy-threads-puce.vercel.app/" class="inline-flex items-center text-black dark:text-white font-semibold hover:underline group-hover:translate-x-2 transition-transform duration-300">
+                            View Project <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Project Card 3 -->
-                 <div class="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group project-card">
-                    <!-- Replace this src with a screenshot of your project -->
+                <div class="glass-card rounded-3xl overflow-hidden card-3d group">
                     <img 
                         src="luxe-beauty.png" 
-                        alt="Preview of Luxe beauty" 
-                        class="w-full h-48 object-cover"
+                        alt="Preview of Luxe Beauty project" 
+                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
                         onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
                     >
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Luxe Beauty (E-commerce website)</h3>
-                        <p class="mt-2 text-gray-600 dark:text-gray-400 flex-grow"> This is an E-commerce website for a cosmetic brand, with a sleek UI and Google authentication system that allows users to create accounts easily with their Gmail/Email so all their actions and interaction with the site are synced across devices.</p>
-                        <a href="https://luxe-beauty-six.vercel.app" class="mt-4 font-semibold text-primary dark:text-indigo-400 group-hover:underline self-start">View Project &rarr;</a>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold gradient-text mb-4">Luxe Beauty</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">E-commerce website for cosmetics with Google authentication and device sync.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">Google Auth</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">HTML</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">CSS</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">JavaScript</span>
+                        </div>
+                        <a href="https://luxe-beauty-six.vercel.app" class="inline-flex items-center text-black dark:text-white font-semibold hover:underline group-hover:translate-x-2 transition-transform duration-300">
+                            View Project <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
                     </div>
                 </div>
+
+                <!--Project 4-->
+                <div class="glass-card rounded-3xl overflow-hidden card-3d group">
+                    <img 
+                        src="Tallwriter.png" 
+                        alt="Preview of The Tall Writer Blog" 
+                        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';"
+                    >
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold gradient-text mb-4">The Tall Writer</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">A personal blog website with very functional SEO that allows this website to take the second spot when you search for it on Google.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">Wordpress</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">CSS</span>
+                            <span class="text-xs px-3 py-1 rounded-full glass text-gray-800 dark:text-gray-100">SEO</span>
+                        </div>
+                        <a href="https://luxe-beauty-six.vercel.app" class="inline-flex items-center text-black dark:text-white font-semibold hover:underline group-hover:translate-x-2 transition-transform duration-300">
+                            View Project <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </div>
                 </div>
+
+            </div>
+
         </section>
 
         <!-- Interests and Soft Skills Section -->
-        <section id="interests" class="py-20 fade-in-section">
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">🎯 What I Enjoy Building</h3>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400 list-disc list-inside">
-                        <li>Websites & Web Apps</li>
-                        <li>Mobile-responsive UI</li>
-                        <li>Smooth, animated frontends</li>
-                        <li>Useful tools for people & businesses</li>
-                        <li>Crypto/blockchain-related tools</li>
-                        <li>Games (learning game dev from scratch)</li>
+        <section id="interests" class="py-24 fade-in-section">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="glass-card rounded-3xl p-10">
+                    <h3 class="text-2xl font-bold text-center gradient-text mb-8 flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l1.546 4.758H18.6l-3.9 2.834 1.49 4.592L12 12.918 7.81 14.184 9.3 9.592 5.4 6.758h5.054L12 2z"/>
+                        </svg>
+                        What I Enjoy Building
+                    </h3>
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Websites & Web Apps
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Mobile-responsive UI
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Smooth, animated frontends
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Useful tools for businesses
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Crypto/blockchain tools
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Games (learning game dev)
+                        </li>
                     </ul>
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">💡 Soft Skills</h3>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400 list-disc list-inside">
-                        <li>Strong communication</li>
-                        <li>Creative problem solving</li>
-                        <li>Fast learner & Detail-oriented</li>
-                        <li>Team player & Self-motivated</li>
-                        <li>Adaptable</li>
+                <div class="glass-card rounded-3xl p-10">
+                    <h3 class="text-2xl font-bold text-center gradient-text mb-8 flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z"/>
+                        </svg>
+                        Soft Skills
+                    </h3>
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Strong communication
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Creative problem solving
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Fast learner & Detail-oriented
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Team player & Self-motivated
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                            Adaptable
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -265,32 +652,49 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white">
-        <div class="container mx-auto px-6 py-12">
-            <div class="text-center">
-                <h2 class="text-2xl font-bold">Interested in working together?</h2>
-                <p class="mt-2 max-w-md mx-auto text-gray-600 dark:text-gray-300">I'm always open to discussing product design work or partnership opportunities.</p>
+    <footer id="contact" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="glass-card rounded-3xl p-12 text-center">
+                <h2 class="text-3xl font-bold gradient-text mb-4">Interested in working together?</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                </p>
                 
-                <div class="mt-8 flex justify-center items-center gap-8">
+                <!-- Contact Form -->
+                <form class="max-w-2xl mx-auto grid grid-cols-1 gap-6 mb-12" 
+                action="https://formspree.io/f/xblpgppj" method="POST">
+                    <input type="text" name="name" placeholder="Your name" required class="w-full px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300">
+                    <input type="email" name="email" placeholder="Your email" required class="w-full px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300">
+                    <textarea name="message" placeholder="Tell me about your project..." rows="5" required class="w-full px-6 py-4 rounded-2xl glass-card border-0 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all duration-300 resize-none"></textarea>
+                    <button type="submit" class="glass-card text-black dark:text-white px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 glow">
+                        Send Message
+                    </button>
+                </form>
+                
+                <div class="flex justify-center items-center gap-12">
                     <!-- Email Link -->
-                    <a href="mailto:anointedolorunwa390@gmail.com" class="group flex flex-col items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                        </svg>
-                        <span class="font-semibold group-hover:underline">Email Me</span>
+                    <a href="mailto:anointedolorunwa390@gmail.com" class="group flex flex-col items-center gap-3 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300">
+                        <div class="glass-card p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                        </div>
+                        <span class="font-semibold">Email</span>
                     </a>
                     
                     <!-- GitHub Link -->
-                    <a href="https://github.com/Bigwave-AVO" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 16 16" fill="currentColor">
-                           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                        <span class="font-semibold group-hover:underline">GitHub</span>
+                    <a href="https://github.com/Bigwave-AVO" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300">
+                        <div class="glass-card p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 16 16" fill="currentColor">
+                               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </div>
+                        <span class="font-semibold">GitHub</span>
                     </a>
                 </div>
             </div>
-            <div class="mt-12 text-center border-t border-gray-300 dark:border-gray-700 pt-8">
+            <div class="mt-16 text-center">
                 <p class="text-gray-500 dark:text-gray-400">&copy; 2024 Anointed Olorunwa. All rights reserved.</p>
             </div>
         </div>
@@ -298,6 +702,40 @@
 
     <!-- JavaScript for Mobile Menu, Theme Toggling & Animations -->
     <script>
+        // --- Preloader Timer ---
+        function hidePreloader() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('hide');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 800);
+            }
+        }
+
+        let preloaderHidden = false;
+        setTimeout(() => {
+            if (!preloaderHidden) {
+                hidePreloader();
+                preloaderHidden = true;
+            }
+        }, 2500);
+
+        window.addEventListener('load', () => {
+            if (!preloaderHidden) {
+                hidePreloader();
+                preloaderHidden = true;
+            }
+        });
+
+        // --- Scroll Progress ---
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+        });
+
         // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -331,6 +769,10 @@
                 localStorage.setItem('color-theme', 'light');
             }
             updateIcons();
+            // Update particle colors
+            if (window.updateParticles) {
+                window.updateParticles();
+            }
         });
 
         // --- Scroll Animation Logic ---
@@ -341,117 +783,165 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: Unobserve after the animation has run
                         observer.unobserve(entry.target);
                     }
                 });
             }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
+                threshold: 0.1
             });
 
             sections.forEach(section => {
                 observer.observe(section);
             });
+
+            // Skill bars reveal on scroll
+            const bars = document.querySelectorAll('.skill-bar-fill');
+            const barObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const pct = e.target.getAttribute('data-percent') || '0';
+                        setTimeout(() => {
+                            e.target.style.width = pct + '%';
+                        }, 200);
+                        barObs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+            bars.forEach(b => barObs.observe(b));
             
-            // --- Three.js Hero Particle Background ---
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const heroCanvas = document.getElementById('hero-canvas');
-            let renderer, scene, camera, points, animationFrameId;
+            // --- Particle Background ---
+            const particleCanvas = document.getElementById('particle-canvas');
+            let particleRenderer, particleScene, particleCamera, particleSystem;
             
-            function isDarkMode() {
-                return document.documentElement.classList.contains('dark');
-            }
-            
-            function initThree() {
-                if (!heroCanvas || reduceMotion || typeof THREE === 'undefined') {
-                    if (heroCanvas) heroCanvas.style.display = 'none';
-                    return;
-                }
-                const dpr = Math.min(window.devicePixelRatio || 1, 2);
-                scene = new THREE.Scene();
-                camera = new THREE.PerspectiveCamera(60, heroCanvas.clientWidth / heroCanvas.clientHeight, 1, 1000);
-                camera.position.z = 120;
+            function initParticles() {
+                if (!particleCanvas || typeof THREE === 'undefined') return;
+
+                particleScene = new THREE.Scene();
+                particleCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+                particleCamera.position.z = 100;
                 
-                renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
-                renderer.setPixelRatio(dpr);
-                renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
-                
-                const particleCount = 800;
+                particleRenderer = new THREE.WebGLRenderer({ 
+                    canvas: particleCanvas, 
+                    alpha: true, 
+                    antialias: true 
+                });
+                particleRenderer.setSize(window.innerWidth, window.innerHeight);
+                particleRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                // Create particles
+                const particleCount = 150;
                 const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+                
                 for (let i = 0; i < particleCount; i++) {
-                    positions[i * 3 + 0] = (Math.random() - 0.5) * 400; // x
-                    positions[i * 3 + 1] = (Math.random() - 0.5) * 200; // y
-                    positions[i * 3 + 2] = (Math.random() - 0.5) * 300; // z
+                    positions[i * 3] = (Math.random() - 0.5) * 2000;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * 2000;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 1000;
+                    
+                    const color = new THREE.Color();
+                    color.setHSL(0, 0, Math.random() * 0.5 + 0.2);
+                    colors[i * 3] = color.r;
+                    colors[i * 3 + 1] = color.g;
+                    colors[i * 3 + 2] = color.b;
                 }
+
                 const geometry = new THREE.BufferGeometry();
                 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                
-                const color = isDarkMode() ? 0x93c5fd : 0x4f46e5; // light indigo in dark, primary in light
-                const material = new THREE.PointsMaterial({ color, size: 1.6, sizeAttenuation: true, transparent: true, opacity: 0.85 });
-                points = new THREE.Points(geometry, material);
-                scene.add(points);
-                
-                const onResize = () => {
-                    if (!renderer) return;
-                    const width = heroCanvas.clientWidth;
-                    const height = heroCanvas.clientHeight;
-                    renderer.setSize(width, height);
-                    camera.aspect = width / height;
-                    camera.updateProjectionMatrix();
-                };
-                window.addEventListener('resize', onResize);
-                onResize();
-                
-                // Update particle color on theme toggle
-                themeToggleBtn.addEventListener('click', () => {
-                    if (points && points.material) {
-                        points.material.color.set(isDarkMode() ? 0x93c5fd : 0x4f46e5);
-                    }
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+                const material = new THREE.PointsMaterial({
+                    size: 2,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.6,
+                    blending: THREE.AdditiveBlending
                 });
-                
-                let t = 0;
-                function animate() {
-                    animationFrameId = requestAnimationFrame(animate);
-                    t += 0.0025;
-                    if (points) {
-                        points.rotation.y = t;
-                        points.rotation.x = Math.sin(t * 0.6) * 0.1;
-                    }
-                    renderer.render(scene, camera);
+
+                particleSystem = new THREE.Points(geometry, material);
+                particleScene.add(particleSystem);
+
+                // Animation
+                function animateParticles() {
+                    requestAnimationFrame(animateParticles);
+                    
+                    particleSystem.rotation.x += 0.0005;
+                    particleSystem.rotation.y += 0.001;
+                    
+                    particleRenderer.render(particleScene, particleCamera);
                 }
-                animate();
-            }
-            
-            // Delay init slightly to ensure layout sizes are stable
-            setTimeout(initThree, 50);
-            
-            // --- 3D Tilt on Project Cards ---
-            const projectCards = document.querySelectorAll('.project-card');
-            if (!reduceMotion) {
-                projectCards.forEach((card) => {
-                    let rafId = null;
-                    const maxTilt = 8; // degrees
-                    const perspective = 800; // px
-                    function handleMove(e) {
-                        const rect = card.getBoundingClientRect();
-                        const px = (e.clientX - rect.left) / rect.width;
-                        const py = (e.clientY - rect.top) / rect.height;
-                        const rotateY = (px - 0.5) * (maxTilt * 2);
-                        const rotateX = -(py - 0.5) * (maxTilt * 2);
-                        if (rafId) cancelAnimationFrame(rafId);
-                        rafId = requestAnimationFrame(() => {
-                            card.style.transform = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                        });
-                    }
-                    function resetTilt() {
-                        if (rafId) cancelAnimationFrame(rafId);
-                        card.style.transform = '';
-                    }
-                    card.addEventListener('mousemove', handleMove);
-                    card.addEventListener('mouseleave', resetTilt);
-                    card.addEventListener('blur', resetTilt, true);
+                animateParticles();
+
+                // Resize handler
+                window.addEventListener('resize', () => {
+                    particleCamera.aspect = window.innerWidth / window.innerHeight;
+                    particleCamera.updateProjectionMatrix();
+                    particleRenderer.setSize(window.innerWidth, window.innerHeight);
                 });
+
+                // Global function to update particle colors on theme change
+                window.updateParticles = () => {
+                    if (!particleSystem) return;
+                    const isDark = document.documentElement.classList.contains('dark');
+                    const colors = particleSystem.geometry.attributes.color.array;
+                    
+                    for (let i = 0; i < colors.length; i += 3) {
+                        const color = new THREE.Color();
+                        color.setHSL(0, 0, isDark ? Math.random() * 0.3 + 0.1 : Math.random() * 0.5 + 0.3);
+                        colors[i] = color.r;
+                        colors[i + 1] = color.g;
+                        colors[i + 2] = color.b;
+                    }
+                    particleSystem.geometry.attributes.color.needsUpdate = true;
+                };
             }
+
+            // Initialize particles after a short delay
+            setTimeout(initParticles, 100);
+
+            // --- Active nav highlight on scroll ---
+            const navLinks = Array.from(document.querySelectorAll('header a[href^="#"]'));
+            const sectionIds = navLinks.map(a => a.getAttribute('href')).filter(Boolean);
+            const idToLink = new Map(navLinks.map(a => [a.getAttribute('href'), a]));
+
+            function setActive(id) {
+                navLinks.forEach(a => {
+                    a.classList.remove('text-black', 'dark:text-white');
+                    a.querySelector('span')?.classList.remove('w-full');
+                });
+                const link = idToLink.get(id);
+                if (link) {
+                    link.classList.add('text-black', 'dark:text-white');
+                    link.querySelector('span')?.classList.add('w-full');
+                }
+            }
+
+            const observedSections = document.querySelectorAll(sectionIds.join(', '));
+            const navObserver = new IntersectionObserver((entries) => {
+                const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+                if (visible[0]) setActive('#' + visible[0].target.id);
+            }, { rootMargin: '-30% 0px -60% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+            observedSections.forEach(s => navObserver.observe(s));
+
+            // --- 3D Tilt on Cards ---
+            const cards = document.querySelectorAll('.card-3d');
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                });
+            });
         });
     </script>
 
